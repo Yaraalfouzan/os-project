@@ -8,13 +8,24 @@ class ProcessControlBlock {
     private int turnaroundTime;
     private int waitingTime;
     private int responseTime;
+    private int newCpuBurst;
 
     // Constructor
-    public ProcessControlBlock(String processID, int priority, int arrivalTime, int cpuBurst) {
+    public ProcessControlBlock(String processID, int priority, int arrivalTime, int cpuBurst,int newCpuBurst) {
         this.processID = processID;
         this.priority = priority;
         this.arrivalTime = arrivalTime;
         this.cpuBurst = cpuBurst;
+        this.newCpuBurst=newCpuBurst;
+        startTime=-1;
+    }
+
+    public int getNewCpuBurst() {
+        return newCpuBurst;
+    }
+
+    public void setNewCpuBurst(int newCpuBurst) {
+        this.newCpuBurst = newCpuBurst;
     }
 
     public int getPriority() {
@@ -66,7 +77,7 @@ class ProcessControlBlock {
     }
 
     public int getTurnaroundTime() {
-        turnaroundTime=terminationTime-startTime;
+        turnaroundTime=terminationTime-arrivalTime;
         return turnaroundTime;
     }
 
@@ -74,7 +85,7 @@ class ProcessControlBlock {
 
     public int getWaitingTime() {
        
-        waitingTime = Math.max(0, startTime - arrivalTime - cpuBurst);
+        waitingTime =  (terminationTime- arrivalTime) - cpuBurst;
         return waitingTime;
     }
     
