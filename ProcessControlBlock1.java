@@ -1,4 +1,4 @@
-class ProcessControlBlock1 {
+class ProcessControlBlock {
     private String processID;
     private int priority;
     private int arrivalTime;
@@ -8,25 +8,21 @@ class ProcessControlBlock1 {
     private int turnaroundTime;
     private int waitingTime;
     private int responseTime;
-    private int newCpuBurst;
-
+  
+//actual class
     // Constructor
-    public ProcessControlBlock1(String processID, int priority, int arrivalTime, int cpuBurst,int newCpuBurst) {
+    public ProcessControlBlock(String processID, int priority, int arrivalTime, int cpuBurst) {
         this.processID = processID;
         this.priority = priority;
         this.arrivalTime = arrivalTime;
         this.cpuBurst = cpuBurst;
-        this.newCpuBurst=newCpuBurst;
-        startTime=-1;
+        this.startTime = 0;
+        this.terminationTime = 0;
+        this.turnaroundTime = 0;
+        this.waitingTime = 0;
+        this.responseTime = 0;
     }
-
-    public int getNewCpuBurst() {
-        return newCpuBurst;
-    }
-
-    public void setNewCpuBurst(int newCpuBurst) {
-        this.newCpuBurst = newCpuBurst;
-    }
+    
 
     public int getPriority() {
         return priority;
@@ -77,25 +73,36 @@ class ProcessControlBlock1 {
     }
 
     public int getTurnaroundTime() {
-        turnaroundTime=terminationTime-arrivalTime;
+       turnaroundTime=terminationTime-arrivalTime;
         return turnaroundTime;
     }
 
+    public void setTurnaroundTime(int turnaroundTime) {
+    	this.turnaroundTime=turnaroundTime;
+		
+	}
     
 
     public int getWaitingTime() {
        
-        waitingTime =  (terminationTime- arrivalTime) - cpuBurst;
+       waitingTime =  (terminationTime- arrivalTime) - cpuBurst;
         return waitingTime;
+    }
+    
+    public void setWaitingTime(int waitingTime) {
+    	this.waitingTime=waitingTime;
     }
     
 
 
     public int getResponseTime() {
-      responseTime=startTime-arrivalTime;
+     responseTime=startTime-arrivalTime;
         return responseTime;
     }
 
+    public void setResponseTime(int ResponseTime) {
+    	this.responseTime = ResponseTime;
+    }
     
 
     
