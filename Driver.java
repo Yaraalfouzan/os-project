@@ -176,7 +176,7 @@ public class Driver {
         				 removeProcessFromQ2(0);
         				 
                         }
-        			// end while SJF
+        			// end while SJFx
         			
         		
         	
